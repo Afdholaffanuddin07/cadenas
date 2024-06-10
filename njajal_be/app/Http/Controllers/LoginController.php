@@ -5,43 +5,44 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash; // Import kelas Hash
+use App\Models\Admin;
 
 class LoginController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        $admin = Admin::all();
+        return response()->json($admin);
+    }
+
     public function __invoke(Request $request)
     {
+        // Validasi input
         $validator = Validator::make($request->all(), [
             'admin'     => 'required',
-            'passadmin'  => 'required'
+            'passadmin' => 'required'
         ]);
-
-        //if validation fails
+    
+        // Jika validasi gagal, kembalikan respon 422 (Unprocessable Entity)
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-
-        //get credentials from request
-        $credentials = $request->only('admin', 'passadmin');
-
-        //if auth failed
-        if(!$token = auth()->guard('api')->attempt($credentials)) {
+    
+        // Ambil data admin dari database berdasarkan input admin
+        $admin = Admin::where('admin', $request->admin)->first();
+    
+        // Jika tidak ada admin atau password dengan nama admin yang diberikan
+        if (!$admin || !Hash::check($request->passadmin,$admin->passadmin)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Email atau Password Anda salah'
-            ], 401);
+                'message' => 'username atau password tidak cocok'
+            ], 404);
         }
-
-        //if auth success
-        return response()->json([
+    
+       return response()->json([
             'success' => true,
-            'user'    => auth()->guard('api')->admin(),    
-            'token'   => $token   
-        ], 200);
+            'user'    => $admin,
+            ], 200);
     }
 }

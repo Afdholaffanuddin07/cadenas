@@ -8,6 +8,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,3 +28,5 @@ Route::apiResource('admins', AdminController::class);
 Route::apiResource('activities', ActivityController::class);
 Route::get('/total-users', [DashboardController::class, 'getTotalUsers']);
 Route::get('/total-activities', [DashboardController::class, 'getTotalActivities']);
+Route::post('/login', App\Http\Controllers\LoginController::class)->name('login');
+Route::post('/register', RegisterController::class)->name('register');

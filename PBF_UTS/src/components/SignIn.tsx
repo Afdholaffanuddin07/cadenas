@@ -1,28 +1,41 @@
-import { FunctionComponent, useCallback } from "react";
+import React, { FunctionComponent, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
 
 const SignIn: FunctionComponent = () => {
+
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [admin, setAdmin] = useState("");
+  const [passadmin, setPassadmin] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
-  };
+  const Login = useCallback(async () => {
+    let item = { admin, passadmin };
+    try {
+      let result = await fetch("http://localhost:8000/api/login", {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": 'application/json',
+        },
+        body: JSON.stringify(item),
+      });
 
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
+      if (!result.ok) {
+        throw new Error('Login failed');
+      }
+
+      result = await result.json();
+      localStorage.setItem("user", JSON.stringify(result));
+      navigate("/dashboard");
+    } catch (error) {
+      console.error('Error during login:', error);
+      // alert('Login failed: ' + error.message);
+    }
+  }, [admin, passadmin, navigate]);
 
   const toggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-
-  const onFrameContainerClick = useCallback(() => {
-    navigate("/dashboard");
-  }, [navigate]);
 
   return (
     <section className="w-[870px] [backdrop-filter:blur(4px)] rounded-xl overflow-hidden flex flex-row items-end justify-center relative [row-gap:20px] max-w-full text-center text-31xl text-white font-poppins mq750:flex-wrap">
@@ -52,8 +65,8 @@ const SignIn: FunctionComponent = () => {
                   className="[outline:none] pt-0 px-0 pb-[9px] font-poppins font-semibold text-sm text-lightgray [border:none] w-full h-full [background:transparent] relative z-[3]"
                   placeholder="Username"
                   type="text"
-                  value={username}
-                  onChange={handleUsernameChange}
+                  value={admin}
+                  onChange={(e) => setAdmin(e.target.value)}
                 />
               </div>
               <div className="self-stretch h-0.5 relative box-border border-t-[2px] border-solid border-lightgray" />
@@ -67,8 +80,8 @@ const SignIn: FunctionComponent = () => {
                   className="[outline:none] pt-0 px-0 pb-[9px] font-poppins font-semibold text-sm text-lightgray [border:none] w-full h-full [background:transparent] relative z-[3]"
                   placeholder="Password"
                   type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={handlePasswordChange}
+                  value={passadmin}
+                  onChange={(e) => setPassadmin(e.target.value)}
                 />
                 <div className="absolute right-0 top-0 bottom-0 flex items-center pr-2">
                   <img
@@ -82,22 +95,21 @@ const SignIn: FunctionComponent = () => {
               <div className="self-stretch h-0.5 relative box-border border-t-[2px] border-solid border-lightgray" />
             </div>
             <button
-                className="mt-4 w-full font-poppins text-lg hover:animate-[1s_ease_0s_infinite_normal_none_shadow-inset-center] hover:opacity-[1] cursor-pointer"
-                style={{
-                  display: "block",
-                  width: "190px",
-                  height: "65px",
-                  background: "linear-gradient(256.59deg,#71c7ec 7.87%, #092230 76.37%)",
-                  opacity: "1",
-                  color: "white",
-                  fontWeight: "bold",
-                  paddingTop: "20px",
-                  paddingBottom: "20px",
-                  borderRadius: "8px",
-                  marginLeft: "85px",
-
-                }}
-                onClick={onFrameContainerClick}>
+              className="mt-4 w-full font-poppins text-lg hover:animate-[1s_ease_0s_infinite_normal_none_shadow-inset-center] hover:opacity-[1] cursor-pointer"
+              style={{
+                display: "block",
+                width: "190px",
+                height: "65px",
+                background: "linear-gradient(256.59deg,#71c7ec 7.87%, #092230 76.37%)",
+                opacity: "1",
+                color: "white",
+                fontWeight: "bold",
+                paddingTop: "20px",
+                paddingBottom: "20px",
+                borderRadius: "8px",
+                marginLeft: "85px",
+              }}
+              onClick={Login}>
               Sign In
             </button>
           </div>

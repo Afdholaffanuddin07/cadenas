@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
         //create user
         $admin = Admin::create([
             'admin'      => $request->admin,
-            'passadmin'  => $request->passadmin,
+            'passadmin'  => Hash::make($request->passadmin),
         ]);
 
         //return response JSON user is created
