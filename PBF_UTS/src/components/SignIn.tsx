@@ -11,7 +11,7 @@ const SignIn: FunctionComponent = () => {
   const Login = useCallback(async () => {
     let item = { admin, passadmin };
     try {
-      let result = await fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/login`, {
+      let result = await fetch(`http://34.101.67.154:8000/api/login`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
