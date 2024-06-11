@@ -40,19 +40,19 @@ class ActivityController extends Controller
         }
 
         $user = User::where('password',$request->password)->first();
-        
+
         if(!$user){
             return response()->json([
                 'message' => 'Acces denied',
             ]);
         }
-        $activity = Activity::create([
-            'user_id' => $user->id,
-            'jam' => Carbon::now()->format('H:i:s'),  // Format jam sekarang menjadi jam:menit:detik
-            'tanggal' => Carbon::now()->format('d-m-Y'),
+        // $activity = Activity::create([
+        //     'user_id' => $user->id,
+        //     'jam' => Carbon::now()->format('H:i:s'),  // Format jam sekarang menjadi jam:menit:detik
+        //     'tanggal' => Carbon::now()->format('d-m-Y'),
 
-            // 'foto' =>,
-        ]);
+        //     // 'foto' =>,
+        // ]);
         return response()->json([
             'message' => 'Access granted',
             'data' => $activity,
