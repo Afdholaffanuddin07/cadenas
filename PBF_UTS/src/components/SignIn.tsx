@@ -11,7 +11,7 @@ const SignIn: FunctionComponent = () => {
   const Login = useCallback(async () => {
     let item = { admin, passadmin };
     try {
-      let result = await fetch("http://localhost:8000/api/login", {
+      let result = await fetch("http://localhost:8000/api/", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
