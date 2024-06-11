@@ -30,7 +30,7 @@ const Dashboard= () => {
 
   useEffect(() => {
     // Fetch total users from API
-    axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/total-users`)
+    axios.get(`http://34.101.67.154:8000/api/total-users`)
       .then(response => {
         setTotalUsers(response.data.total);
       })
@@ -39,7 +39,7 @@ const Dashboard= () => {
       });
 
     // Fetch total activities from API
-    axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/total-activities`)
+    axios.get(`http://34.101.67.154:8000/api/total-activities`)
       .then(response => {
         setTotalActivities(response.data.total);
       })

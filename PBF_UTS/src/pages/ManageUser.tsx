@@ -39,7 +39,7 @@ const ManageUser: React.FC = () => {
   const itemsPerPage = 10;
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/users`)
+    axios.get(`http://34.101.67.154:8000/api/users`)
         .then(response => {
             setUsers(response.data);
         })
@@ -48,7 +48,7 @@ const ManageUser: React.FC = () => {
         });
   }, []);
   const handleDelete = (id: number) => {
-    axios.delete(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/users/${id}`)
+    axios.delete(`http://34.101.67.154:8000/api/users/${id}`)
       .then(response => {
         setUsers(users.filter(user => user.id !== id));
         console.log(`User with ID ${id} deleted successfully.`);

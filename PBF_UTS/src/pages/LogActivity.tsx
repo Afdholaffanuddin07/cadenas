@@ -36,7 +36,7 @@ const LogActivity = () => {
   useEffect(() => {
     // Fetch activities from API
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/activities`)
+      .get(`http://34.101.67.154:8000/api/activities`)
       .then((response) => {
         setActivities(response.data);
       })

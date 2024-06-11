@@ -29,7 +29,7 @@ const AddUser = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Create new user
-    axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/users`, user)
+    axios.post(`http://34.101.67.154:8000/api/users`, user)
       .then(response => {
         console.log('User created successfully:', response.data);
         // Navigate to another page or show a success message
