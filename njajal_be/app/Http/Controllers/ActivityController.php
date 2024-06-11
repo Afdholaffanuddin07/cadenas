@@ -44,7 +44,7 @@ class ActivityController extends Controller
         if(!$user){
             return response()->json([
                 'message' => 'Acces denied',
-            ]);
+            ],404);
         }
         $activity = Activity::create([
             'user_id' => $user->id,
