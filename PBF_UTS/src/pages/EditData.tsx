@@ -23,7 +23,7 @@ const EditData = () => {
 
   useEffect(() => {
     // Fetch user data based on ID
-    axios.get(`http://localhost:8000/api/users/${id}`)
+    axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/users/${id}`)
       .then(response => {
         setUser(response.data);
         setIsLoading(false);
@@ -45,7 +45,7 @@ const EditData = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Update user data
-    axios.put(`http://localhost:8000/api/users/${id}`, user)
+    axios.put(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/users/${id}`, user)
       .then(response => {
         console.log('User updated successfully:', response.data);
         // Navigate to another page or show a success message
