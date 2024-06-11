@@ -16,6 +16,14 @@ class ActivityController extends Controller
         $activity=Activity::all();
         return response()->json($activity);
     }
+    public function indexall(){
+        $page = $request->input('page',1);
+        $perPage = $request->input('per_page',4);
+        $activity = Activity::query();
+        $activity = $activity->orderBy('created_at','desc');
+        $activity = $activity->paginate($perPage,['*'],'page',$page);
+        return response()->json($activity);
+    }
     public function cekLogin(Request $request){
         date_default_timezone_set('Asia/Jakarta');
         $rules = [
