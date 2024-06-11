@@ -32,3 +32,4 @@ Route::get('/total-activities', [DashboardController::class, 'getTotalActivities
 Route::post('/login', App\Http\Controllers\LoginController::class)->name('login');
 Route::post('/register', RegisterController::class)->name('register');
 Route::post('/inputpin', [ActivityController::class, 'cekLogin']);
+Route::post('/takecam', [ActivityController::class, 'image']);
