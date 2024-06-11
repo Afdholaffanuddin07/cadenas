@@ -44,6 +44,27 @@ class ActivityController extends Controller
             'data' => $activity,
         ], 200); 
     }
+    public function image(Request $request){
+        $activity = Activity::orderBy('created_at','desc')->first();
+
+        if(!$history){
+            return response()->json([
+                'message' => 'History not found',
+            ],404);
+        }
+        $rules = [
+            'foto_name' => 'required|string',
+            'foto_file' => 'required|string',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 404);
+        }
+
+    }
 
     public function store(Request $request)
     {

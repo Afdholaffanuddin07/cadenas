@@ -21,6 +21,10 @@ class Activity extends Model
     public function getImageAttribute(){
         return asset('storage/' . $this->attribute['foto']);
     }
+    public function getCreatedAttribute(){
+        $creatat = Carbon::parse($this->attribute['created_at']);
+        return $creatat->format('d-m-Y H:i:s');
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
