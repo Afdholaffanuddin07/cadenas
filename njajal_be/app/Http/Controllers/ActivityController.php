@@ -40,7 +40,7 @@ class ActivityController extends Controller
         }
 
         $user = User::where('password',$request->password)->first();
-
+        
         if(!$user){
             return response()->json([
                 'message' => 'Acces denied',
