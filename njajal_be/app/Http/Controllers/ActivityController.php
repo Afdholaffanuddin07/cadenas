@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+
 
 class ActivityController extends Controller
 {
@@ -16,7 +18,7 @@ class ActivityController extends Controller
         $activity=Activity::all();
         return response()->json($activity);
     }
-    public function indexall(){
+    public function indexall(Request $request){
         $page = $request->input('page',1);
         $perPage = $request->input('per_page',4);
         $activity = Activity::query();
