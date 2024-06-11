@@ -36,4 +36,4 @@ Route::post('/register', RegisterController::class)->name('register');
 
 Route::post('/cek', [ActivityController::class, 'cekLogin']);
 Route::get('/index', [ActivityController::class, 'indexall']);
-Route::post('/index/image', [ActivityController::class, 'image']);
+Route::post('/cek/image', [ActivityController::class, 'image']);
