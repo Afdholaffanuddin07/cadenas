@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ActivityController;
@@ -30,3 +31,4 @@ Route::get('/total-users', [DashboardController::class, 'getTotalUsers']);
 Route::get('/total-activities', [DashboardController::class, 'getTotalActivities']);
 Route::post('/login', App\Http\Controllers\LoginController::class)->name('login');
 Route::post('/register', RegisterController::class)->name('register');
+Route::post('/inputpin', [ActivityController::class, 'cekLogin']);
