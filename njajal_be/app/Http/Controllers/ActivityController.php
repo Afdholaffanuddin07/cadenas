@@ -51,7 +51,7 @@ class ActivityController extends Controller
         ]);
         return response()->json([
             'message' => 'Access granted',
-            'data' => $activity,
+            
         ], 200); 
     }
     public function image(Request $request){
