@@ -19,4 +19,5 @@ class DashboardController extends Controller
         $totalActivities = Activity::count();
         return response()->json(['total' => $totalActivities]);
     }
+    
 }
