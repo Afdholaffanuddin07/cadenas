@@ -17,6 +17,7 @@ class ActivityController extends Controller
         return response()->json($activity);
     }
     public function cekLogin(Request $request){
+        date_default_timezone_set('Asia/Jakarta');
         $rules = [
             'password' => 'required',
         ];
@@ -35,8 +36,9 @@ class ActivityController extends Controller
         }
         $activity = Activity::create([
             'user_id' => $user->id,
-            'jam' => Carbon::now(), 
-            'tanggal' => Carbon::now(),
+            'jam' => Carbon::now()->format('H:i:s'),  // Format jam sekarang menjadi jam:menit:detik
+            'tanggal' => Carbon::now()->format('d-m-Y'),
+
             // 'foto' =>,
         ]);
         return response()->json([
@@ -63,6 +65,19 @@ class ActivityController extends Controller
                 'errors' => $validator->errors()
             ], 404);
         }
+        $fotoData = base64_decode($request->foto_file);
+        $fotoName = $request->foto_name . '.jpg';
+
+        $path = 'foto/' . $fotoName;
+        Storage::disk('public')->put($path, $fotoData);
+
+        $activity->update([
+            'image' => $path,
+        ]);
+        return response()->json([
+            'message' => 'Activity updated seccessfully',
+            'data' => $activity,
+        ],200);
 
     }
 
