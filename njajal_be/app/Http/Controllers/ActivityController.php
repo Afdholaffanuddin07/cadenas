@@ -38,7 +38,9 @@ class ActivityController extends Controller
                 'errors' => $validator->errors()
             ], 404);
         }
+
         $user = User::where('password',$request->password)->first();
+        
         if(!$user){
             return response()->json([
                 'message' => 'Acces denied',
