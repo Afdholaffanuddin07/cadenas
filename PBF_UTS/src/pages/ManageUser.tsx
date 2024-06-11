@@ -39,7 +39,7 @@ const ManageUser: React.FC = () => {
   const itemsPerPage = 10;
 
   useEffect(() => {
-    axios.get('${process.env.NEXT_PUBLIC_API_BACKEND}/api/users')
+    axios.get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/users`)
         .then(response => {
             setUsers(response.data);
         })

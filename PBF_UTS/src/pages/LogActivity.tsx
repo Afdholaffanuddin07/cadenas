@@ -36,7 +36,7 @@ const LogActivity = () => {
   useEffect(() => {
     // Fetch activities from API
     axios
-      .get("${process.env.NEXT_PUBLIC_API_BACKEND}/api/activities")
+      .get(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/activities`)
       .then((response) => {
         setActivities(response.data);
       })
