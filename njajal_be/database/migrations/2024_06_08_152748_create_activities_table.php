@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); // Foreign key
             $table->string('jam');
             $table->string('tanggal');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->timestamps();
 
             // Menambahkan foreign key

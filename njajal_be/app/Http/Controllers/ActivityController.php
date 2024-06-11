@@ -48,10 +48,14 @@ class ActivityController extends Controller
         }
         $activity = Activity::create([
             'user_id' => $user->id,
+            'jam' => Carbon::now()->format('H:i:s'),  // Format jam sekarang menjadi jam:menit:detik
+            'tanggal' => Carbon::now()->format('d-m-Y'),
+
+            // 'foto' =>,
         ]);
         return response()->json([
             'message' => 'Access granted',
-            
+            'data' => $activity,
         ], 200); 
     }
     public function image(Request $request){
