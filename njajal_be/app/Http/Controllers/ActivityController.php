@@ -29,7 +29,7 @@ class ActivityController extends Controller
     public function cekLogin(Request $request){
         date_default_timezone_set('Asia/Jakarta');
         $rules = [
-            'password' => 'required',
+            'password' => 'required|integer|digits:4',
         ];
         $validator = Validator::make($request->all(), $rules);
 
