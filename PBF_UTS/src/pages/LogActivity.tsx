@@ -148,7 +148,7 @@ const LogActivity = () => {
                   <img
                     src={`http://34.101.67.154:8000/storage/app/public/foto/${activity.foto}`}
                     alt="Activity"
-                    style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                    style={{ width: "65px", height: "65px", borderRadius: "50%" }}
                   />
                 </td>
               </tr>
