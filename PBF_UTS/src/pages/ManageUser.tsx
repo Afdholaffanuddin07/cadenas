@@ -74,7 +74,7 @@ const ManageUser: React.FC = () => {
     <div
       className="w-full relative"
       style={{
-        background: 'linear-gradient(180deg, #092230, #1c6a96)',
+        background: 'linear-gradient(180deg, #092230)',
         height: '1024px',
         overflow: 'hidden',
         color: 'white',
