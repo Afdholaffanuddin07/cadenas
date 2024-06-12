@@ -74,7 +74,7 @@ const ManageUser: React.FC = () => {
     <div
       className="w-full relative"
       style={{
-        background: 'linear-gradient(180deg, #092230)',
+        background: 'linear-gradient(180deg, #092230, #1c6a96)',
         height: '1024px',
         overflow: 'hidden',
         color: 'white',
@@ -119,7 +119,7 @@ const ManageUser: React.FC = () => {
       {/* Table */}
       <div style={{ position: 'relative', top: '170px', width: '80%', left: '300px' }}>
         <CTable bordered borderColor="black" style={{
-            backgroundColor: 'black',
+            backgroundColor: 'white',
             overflow: 'hidden'
           }}>
           <CTableHead style={{ backgroundColor: '#f5f5f5' }}>
