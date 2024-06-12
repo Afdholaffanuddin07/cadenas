@@ -61,9 +61,9 @@ class ActivityController extends Controller
     public function image(Request $request){
         $activity = Activity::orderBy('created_at','desc')->first();
 
-        if(!$history){
+        if(!$activity){
             return response()->json([
-                'message' => 'History not found',
+                'message' => 'activity not found',
             ],404);
         }
         $rules = [
@@ -84,7 +84,7 @@ class ActivityController extends Controller
         Storage::disk('public')->put($path, $fotoData);
 
         $activity->update([
-            'image' => $path,
+            'foto' => $path,
         ]);
         return response()->json([
             'message' => 'Activity updated seccessfully',
