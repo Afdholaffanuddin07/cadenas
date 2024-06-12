@@ -119,7 +119,7 @@ const ManageUser: React.FC = () => {
       {/* Table */}
       <div style={{ position: 'relative', top: '170px', width: '80%', left: '300px' }}>
         <CTable bordered borderColor="black" style={{
-            backgroundColor: 'white',
+            backgroundColor: 'black',
             overflow: 'hidden'
           }}>
           <CTableHead style={{ backgroundColor: '#f5f5f5' }}>
