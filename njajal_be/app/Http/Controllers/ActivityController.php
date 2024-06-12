@@ -80,8 +80,8 @@ class ActivityController extends Controller
         $fotoData = base64_decode($request->foto_file);
         $fotoName = $request->foto_name . '.jpg';
 
-        $path = 'foto/' . $fotoName;
-        Storage::disk('public')->put($path, $fotoData);
+        $path = $fotoName;
+        Storage::disk('public/foto/')->put($path, $fotoData);
 
         $activity->update([
             'foto' => $path,
