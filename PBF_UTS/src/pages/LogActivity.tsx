@@ -146,7 +146,7 @@ const LogActivity = () => {
                 <td style={{ textAlign: "center" }}>{activity.user_id}</td>
                 <td style={{ textAlign: "center" }}>
                   <img
-                    src={`http://34.101.67.154:8000/storage/app/public/${activity.foto}`}
+                    src={activity.foto}
                     alt="Activity"
                     style={{ width: "500px", height: "500px", borderRadius: "70%" }}
                   />
